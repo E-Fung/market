@@ -5,9 +5,10 @@ var router = express.Router();
 // const orderedProductController = require('../controllers').orderedProduct;
 const productController = require('../controllers').product;
 // const productInCartController = require('../controllers').productInCart;
-// const userController = require('../controllers').user;
+const userController = require('../controllers').user;
 
 router.post('/product', productController.add);
 router.get('/product', productController.getAllById);
+router.post('/register', userController.add);
 
 module.exports = router;

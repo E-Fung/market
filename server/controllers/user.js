@@ -1,20 +1,17 @@
 const User = require('../db').User;
 
 module.exports = {
-  getById(req, res) {
-    return User.findAll({
-      where: {
-        email: req.body.email,
-      },
-    })
+  add(req, res) {
+    return User.create(req.body)
       .then((user) => {
-        if (!user) {
-          return res.status(404).send({
-            message: 'user not found',
-          });
-        }
         return res.status(200).send(user);
       })
-      .catch((error) => res.status(400).send(error));
+      .catch((error) => {
+        if (error.name === 'SequelizeUniqueConstraintError') {
+          return res.status(401).json({ error: 'User already exists' });
+        } else if (error.name === 'SequelizeValidationError') {
+          return res.status(401).json({ error: 'Validation error' });
+        } else next(error);
+      });
   },
 };
