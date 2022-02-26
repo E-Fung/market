@@ -1,4 +1,5 @@
 import { Navbar } from './components';
+<<<<<<< HEAD
 import { BrowserRouter, useRoutes } from 'react-router-dom';
 import Home from './Home';
 import Login from './Register';
@@ -56,16 +57,34 @@ const HomeRoutes = () =>
       path: '/login',
       element: <Login />,
     },
+=======
+import { Routes, Route, BrowserRouter, useRoutes } from 'react-router-dom';
+import Home from './Home';
+const HomeRoutes = () =>
+  useRoutes([
+    { path: '/', element: <Home /> },
+    { path: '/men', element: <Home /> },
+    { path: '/women', element: <Home /> },
+    { path: '/jewelry', element: <Home /> },
+    { path: '/electronics', element: <Home /> },
+>>>>>>> 5f55c9b861e717032550051fef3882a7687b142f
   ]);
 
 function App() {
   return (
     <div>
+<<<<<<< HEAD
       <Provider store={store}>
         <BrowserRouter>
           <HomeRoutes />
         </BrowserRouter>
       </Provider>
+=======
+      <BrowserRouter>
+        <Navbar />
+        <HomeRoutes />
+      </BrowserRouter>
+>>>>>>> 5f55c9b861e717032550051fef3882a7687b142f
     </div>
   );
 }
