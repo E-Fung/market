@@ -3,19 +3,19 @@ import React, { useMemo } from 'react';
 import { LockClosedIcon } from '@heroicons/react/solid';
 import { register } from './redux/utils/thunkCreators';
 import { connect } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
 const Register = (props) => {
-  const { register } = props;
+  const { register, user } = props;
 
   const handleRegister = async (event) => {
     event.preventDefault();
-    // console.log(event.target);
     const name = event.target.name.value;
     const email = event.target.email.value;
     const password = event.target.password.value;
-    console.log('registering');
     await register({ name, email, password });
   };
+
   const registItems = useMemo(() => {
     //type, Title, ID
     return [
@@ -24,6 +24,10 @@ const Register = (props) => {
       ['password', 'Password', 'password'],
     ];
   }, []);
+
+  if (user.email) {
+    return <Navigate replace to="/" />;
+  }
 
   return (
     <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -36,7 +40,7 @@ const Register = (props) => {
           <input type="hidden" name="remember" defaultValue="true" />
           <div className="rounded-md shadow-sm -space-y-px">
             {registItems.map(([type, title, id]) => (
-              <div>
+              <div key={title}>
                 <label htmlFor={id} className="sr-only">
                   {title}
                 </label>
@@ -64,6 +68,16 @@ const Register = (props) => {
             </button>
           </div>
         </form>
+      </div>
+      <div>
+        <button
+          onClick={() => {
+            console.log(user);
+          }}
+          className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          Check User
+        </button>
       </div>
     </div>
   );

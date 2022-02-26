@@ -1,22 +1,71 @@
 import { Navbar } from './components';
-import { Routes, Route, BrowserRouter, useRoutes } from 'react-router-dom';
+import { BrowserRouter, useRoutes } from 'react-router-dom';
 import Home from './Home';
+import Login from './Register';
+import { Provider } from 'react-redux';
+import store from './redux/store';
+
 const HomeRoutes = () =>
   useRoutes([
-    { path: '/', element: <Home /> },
-    { path: '/men', element: <Home /> },
-    { path: '/women', element: <Home /> },
-    { path: '/jewelry', element: <Home /> },
-    { path: '/electronics', element: <Home /> },
+    {
+      path: '/',
+      element: (
+        <>
+          <Navbar />
+          <Home />
+        </>
+      ),
+    },
+    {
+      path: '/men',
+      element: (
+        <>
+          <Navbar />
+          <Home />
+        </>
+      ),
+    },
+    {
+      path: '/women',
+      element: (
+        <>
+          <Navbar />
+          <Home />
+        </>
+      ),
+    },
+    {
+      path: '/jewelry',
+      element: (
+        <>
+          <Navbar />
+          <Home />
+        </>
+      ),
+    },
+    {
+      path: '/electronics',
+      element: (
+        <>
+          <Navbar />
+          <Home />
+        </>
+      ),
+    },
+    {
+      path: '/login',
+      element: <Login />,
+    },
   ]);
 
 function App() {
   return (
     <div>
-      <BrowserRouter>
-        <Navbar />
-        <HomeRoutes />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <HomeRoutes />
+        </BrowserRouter>
+      </Provider>
     </div>
   );
 }

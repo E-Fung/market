@@ -6,3 +6,8 @@ export const gotUser = (user) => {
     user,
   };
 };
+
+export const setFetchingStatus = (isFetching) => ({
+  type: ActionTypes.SET_FETCHING_STATUS,
+  isFetching,
+});
