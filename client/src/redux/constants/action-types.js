@@ -1,7 +1,13 @@
 export const ActionTypes = {
+<<<<<<< Updated upstream
 <<<<<<< HEAD
+=======
+  //User
+>>>>>>> Stashed changes
   GET_USER: 'GET_USER',
   SET_FETCHING_STATUS: 'SET_FETCHING_STATUS',
+
+  //
 };
 =======
   SET_PRODUCTS : "SET_PRODUCTS",

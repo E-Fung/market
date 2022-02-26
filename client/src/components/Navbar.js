@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { cart, logo, empty_user } from '../assets';
+import { cart, logo } from '../assets';
 import { useLocation, Link } from 'react-router-dom';
 //mx-auto - centers container
 //max-w-7xl - constrains the container
@@ -34,7 +34,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-800">
+    <nav className="bg-light">
       <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
         <div className="relative flex items-center justify-between">
           <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -61,10 +61,10 @@ const Navbar = () => {
             <div className="hidden items-center sm:flex sm:ml-6">
               <div className="flex space-x-4">
                 {menuItems.map(([link, title]) => (
-                  <Link to={`/${link}`}>
+                  <Link to={`/${link}`} key={title}>
                     <div
-                      className={`text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium ${
-                        location === `/${link}` ? 'bg-gray-900 text-white' : ''
+                      className={`text-white hover:bg-highlight hover:text-white px-3 py-2 rounded-md text-sm font-medium ${
+                        location === `/${link}` ? 'bg-accent' : ''
                       }`}
                     >
                       {title}
@@ -84,7 +84,7 @@ const Navbar = () => {
 
             <div className="ml-3 relative">
               <div>
-                <button
+                {/* <button
                   type="button"
                   className="bg-white flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
                   id="user-menu-button"
@@ -94,7 +94,13 @@ const Navbar = () => {
                 >
                   <span className="sr-only">Open user menu</span>
                   <img className="h-8 w-8 rounded-full" src={empty_user} alt="" />
-                </button>
+                </button> */}
+                <Link
+                  to="/login"
+                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  Login
+                </Link>
               </div>
               {userMenu && (
                 <div
@@ -111,6 +117,7 @@ const Navbar = () => {
                       role="menuitem"
                       tabindex="-1"
                       id={`user-menu-item-${index}`}
+                      key={title}
                     >
                       {title}
                     </div>
@@ -125,7 +132,7 @@ const Navbar = () => {
         <div className="sm:hidden" id="mobile-menu">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {menuItems.map(([link, title]) => (
-              <Link to={`/${link}`}>
+              <Link to={`/${link}`} key={title}>
                 <div
                   onClick={toggleShopMenu}
                   className={`text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium ${
