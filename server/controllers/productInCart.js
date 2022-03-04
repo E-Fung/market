@@ -1,6 +1,11 @@
 const ProductInCart = require('../db').ProductInCart;
 
 module.exports = {
+  add(req, res) {
+    return ProductInCart.create({})
+      .then((product) => res.status(201).send(product))
+      .catch((error) => res.status(400).send(error));
+  },
   getAllById(req, res) {
     return ProductInCart.findAll({
       where: {

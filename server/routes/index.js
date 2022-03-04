@@ -8,7 +8,8 @@ const productController = require('../controllers').product;
 const userController = require('../controllers').user;
 
 router.post('/product', productController.add);
-router.get('/product', productController.getAllById);
+router.get('/product', productController.getAll);
+router.post('/product/category', productController.getAllByCategory);
 
 router.post('/register', userController.add);
 

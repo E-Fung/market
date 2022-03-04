@@ -35,7 +35,7 @@ const HomeRoutes = () =>
       ),
     },
     {
-      path: '/jewelry',
+      path: '/jewelery',
       element: (
         <>
           <Navbar />
